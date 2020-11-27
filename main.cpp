@@ -1,7 +1,7 @@
 #include "Interface.h"
 #include "File_Fetcher.h"
 
-//Test github
+//Test github from fake account
 int main() {
 	File_Fetcher fetcher;
 	Interface intf;
