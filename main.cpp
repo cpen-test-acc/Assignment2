@@ -1,7 +1,7 @@
 #include "Interface.h"
 #include "File_Fetcher.h"
 
-//actual fake user
+//From real user
 int main() {
 	File_Fetcher fetcher;
 	Interface intf;
