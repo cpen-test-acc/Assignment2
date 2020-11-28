@@ -118,8 +118,10 @@ void Interface::display_menu_items(bool is_president) {
 			yr2_pgm_sel->display_previous_preference(the_file_fetcher);
 			yr2_pgm_sel->search_year2_data(the_file_fetcher);
 			yr2_pgm_sel->search_student_data(person_id, the_file_fetcher);
-			yr2_pgm_sel->display_student_data();
-
+			yr2_pgm_sel->search_student_course(person_id, the_file_fetcher);
+			yr2_pgm_sel->display_student_data(the_file_fetcher);
+			yr2_pgm_sel->check_year2_standing();
+			//yr2_pgm_sel->check_preference_acceptance();
 		}
 		else {
 			MOVE_CURSOR(0, 0);

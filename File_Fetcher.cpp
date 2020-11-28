@@ -8,6 +8,8 @@ File_Fetcher::File_Fetcher() {
 	available_choices = { "engineering physics", "electrical engineering", "computer engineering", "chemical engineering", "biomedical engineering" };
 	available_seats = { 3, 12, 45, 32, 11};
 	student_data = { {0,1}, {1,0}, {1,0}, {0,1}, {1,0} }; // an example of student data that can be used to make decisions, in this case: 1 = transgression on record, 0 = no transgressions
+	student_course = { {}, {"CPEN333","PHYS410"},{},{},{} };
+	student_gpa = { {}, {96,81}, {}, {}, {} };
 }
 File_Fetcher::~File_Fetcher() {
 	delete the_interface;
