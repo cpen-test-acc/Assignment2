@@ -1,7 +1,7 @@
 #include "Interface.h"
 #include "File_Fetcher.h"
 
-//From real user
+//From 2nd account
 int main() {
 	File_Fetcher fetcher;
 	Interface intf;
