@@ -13,13 +13,13 @@ class Interface{
 		string username, password;
 		int person_id;
 		bool is_president;
-		bool verify_login(string username, string password);
+		
 	public:
 		File_Fetcher* the_file_fetcher;
 		Year2_Program_Selection* yr2_pgm_sel;
 		Interface();
 		~Interface();
-		
+		bool verify_login(string username, string password);
 		void Add_File_Fetcher(File_Fetcher* pfile_fetcher);
 		void Del_File_Fetcher();
 		void accept_username_password();
