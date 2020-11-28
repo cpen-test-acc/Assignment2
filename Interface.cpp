@@ -18,22 +18,21 @@ Interface::~Interface() {
 };
 
 void Interface::accept_username_password() {
-	//MOVE_CURSOR(0, 0);
-	//cout << "enter username ";
-	//cin >> username;
-	//MOVE_CURSOR(0, 1);
-	//cout << "enter password ";
-	//cin >> password;
-	//while (!verify_login(username, password)) {
-	//	display_login_result(false);
-	//	MOVE_CURSOR(0, 0);
-	//	cout << "enter username ";
-	//	cin >> username;
-	//	MOVE_CURSOR(0, 1);
-	//	cout << "enter password ";
-	//	cin >> password;
-	//}
-	person_id = 1; // jacky used for testing
+	MOVE_CURSOR(0, 0);
+	cout << "enter username ";
+	cin >> username;
+	MOVE_CURSOR(0, 1);
+	cout << "enter password ";
+	cin >> password;
+	while (!verify_login(username, password)) {
+		display_login_result(false);
+		MOVE_CURSOR(0, 0);
+		cout << "enter username ";
+		cin >> username;
+		MOVE_CURSOR(0, 1);
+		cout << "enter password ";
+		cin >> password;
+	}
 	display_login_result(true);
 	display_menu_items(is_president);
 }
@@ -54,7 +53,6 @@ bool Interface::verify_login(string username, string password) {
 			return true;
 		}
 	}
-
 	return false;
 }
 
@@ -121,7 +119,15 @@ void Interface::display_menu_items(bool is_president) {
 			yr2_pgm_sel->search_student_course(person_id, the_file_fetcher);
 			yr2_pgm_sel->display_student_data(the_file_fetcher);
 			yr2_pgm_sel->check_year2_standing();
-			//yr2_pgm_sel->check_preference_acceptance();
+			if (!yr2_pgm_sel->check_preference_acceptance()) {
+				printf("\n\n\n");
+				printf("Pre-requistes are not met, REJECTED");
+				while (1);
+			};
+			yr2_pgm_sel->accept_year2_preference();
+			yr2_pgm_sel->update_student_course();
+			yr2_pgm_sel->update_year2_data(the_file_fetcher);
+			yr2_pgm_sel->update_year2_preference(person_id, the_file_fetcher);
 		}
 		else {
 			MOVE_CURSOR(0, 0);

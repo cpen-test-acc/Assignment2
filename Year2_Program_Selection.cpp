@@ -37,6 +37,9 @@ void Year2_Program_Selection::display_previous_preference(File_Fetcher* pfiles) 
 		i++;
 	}
 	cin >> new_pref;
+	auto it = pfiles->available_choices.begin();
+	advance(it, new_pref);
+	s_new_pref = *it;
 }
 
 
@@ -50,11 +53,7 @@ void Year2_Program_Selection::search_year2_data(File_Fetcher* pfiles) {
 void Year2_Program_Selection::search_student_data(int student_id, File_Fetcher* pfiles) {
 	auto it = pfiles->student_data.begin();
 	advance(it, student_id);
-	list <int> temp_array = *it;
-	auto it2 = temp_array.begin();
-	student_yr2_eligibility = *it2;
-	advance(it2, 1);
-	student_transgression_record = *it2;
+	student_transgression_record = *it;
 }
 
 void Year2_Program_Selection::search_student_course(int student_id, File_Fetcher* pfiles) {
@@ -83,7 +82,6 @@ void Year2_Program_Selection::display_student_data(File_Fetcher* pfiles) {
 	advance(it, new_pref);
 	cout << "You are applying for: " << *it << endl;
 	cout << "Here student data is presented to be checked" << endl << endl;
-	cout << "Student year 2 eligibility: " << to_string(student_yr2_eligibility) << endl;
 	cout << "Student transgression record: " << to_string(student_transgression_record) << endl << endl;
 	cout << "Courses: ";
 
@@ -102,12 +100,13 @@ void Year2_Program_Selection::display_student_data(File_Fetcher* pfiles) {
 }
 
 bool Year2_Program_Selection::check_year2_standing() {
-	// Here, you would usually grab the course prereqs and the gpa in order to determine year 2 eligibility
-	// For this demo, we assign it right away
-	if (student_yr2_eligibility) {
-		return true;
+	int sum = 0;
+	// Here check that the average gpa is passing and there are no transgression on record
+	for (auto it = student_grades.begin(); it != student_grades.end(); ++it) {
+		sum += *it;
 	}
-	else {
+	cout << "Checking that student has year 2 standing" << endl;
+	if (((sum / student_grades.size()) < 50) | (student_transgression_record)) {
 		MOVE_CURSOR(0, 0);
 		printf("                                                                                                                                                                          ");
 		MOVE_CURSOR(0, 1);
@@ -123,8 +122,63 @@ bool Year2_Program_Selection::check_year2_standing() {
 		while (1);
 		return false;
 	}
+	return true;
+}
+bool Year2_Program_Selection::check_preference_acceptance() {
+//	"engineering physics"
+	if (new_pref == 0) {
+		// here goes the requirements for this program
+		auto it = find(student_courses.begin(), student_courses.end(), "PHYS102"); // PHYS102 is a pre-req, must be > 65%
+		if (it != student_courses.end()) {
+			int course_id = distance(student_courses.begin(), it);
+			auto it2 = student_grades.begin();
+			advance(it2, course_id);
+			if (*it2 > 65) {
+				return true;
+			}
+		}
+	}
+// "electrical engineering"
+	else if (new_pref == 1) {
+		// here goes the requirements for this program ( not implemented )
+	}
+//	"computer engineering"
+	else if (new_pref == 2) {
+		// here goes the requirements for this program ( not implemented )
+	}
+//  "chemical engineering"
+	else if (new_pref == 3) {
+		// here goes the requirements for this program ( not implemented )
+	}
+//  "biomedical engineering"
+	else if (new_pref == 4) {
+		// here goes the requirements for this program ( not implemented )
+	}
+	return false;
+}
+void Year2_Program_Selection::accept_year2_preference() {
+	int garbage;
+	cout << endl << endl << endl;
+	cout << "You are accepted to " << s_new_pref << " because you have 2nd year standing and met all requirements for the program" << endl;
 }
 
-void Year2_Program_Selection::accept_year2_preference(File_Fetcher* pfiles) {
+void Year2_Program_Selection::update_student_course() {
+	cout << "update student courses with year 2 program courses" << endl;
+	auto it = student_courses.begin();
+	student_courses.insert(it,"MATH246");
 
+
+}
+void Year2_Program_Selection::update_year2_data(File_Fetcher* pfiles) {
+	cout << "updated the 2nd year program data such as available seats" << endl;
+	auto it = pfiles->available_seats.begin();
+	advance(it, new_pref);
+	*it += 1;
+}
+
+void Year2_Program_Selection::update_year2_preference(int student_id, File_Fetcher* pfiles) {
+	cout << "Put change in preference on record" << endl;
+	auto it = pfiles->preferences.begin();
+	advance(it, student_id);
+	*it = s_new_pref;
 }

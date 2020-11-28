@@ -7,9 +7,9 @@ File_Fetcher::File_Fetcher() {
 	preferences = { "na", "engineering physics", "electrical engineering", "computer engineering", "not picked" };
 	available_choices = { "engineering physics", "electrical engineering", "computer engineering", "chemical engineering", "biomedical engineering" };
 	available_seats = { 3, 12, 45, 32, 11};
-	student_data = { {0,1}, {1,0}, {1,0}, {0,1}, {1,0} }; // an example of student data that can be used to make decisions, in this case: 1 = transgression on record, 0 = no transgressions
-	student_course = { {}, {"CPEN333","PHYS410"},{},{},{} };
-	student_gpa = { {}, {96,81}, {}, {}, {} };
+	student_data =  {0, 0, 0, 1, 0 }; // an example of student data that can be used to make decisions, in this case: 1 = transgression on record, 0 = no transgressions
+	student_course = { {}, {"CPEN181","PHYS102"},{},{},{} };
+	student_gpa = { {}, {62,91}, {}, {}, {} };
 }
 File_Fetcher::~File_Fetcher() {
 	delete the_interface;

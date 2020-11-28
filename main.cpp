@@ -8,7 +8,6 @@ int main() {
 
 	intf.Add_File_Fetcher(&fetcher);
 	intf.accept_username_password();
-
 	intf.Del_File_Fetcher();
 	return 0;
 }
