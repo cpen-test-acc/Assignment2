@@ -2,8 +2,8 @@
 #include "Interface.h"
 
 File_Fetcher::File_Fetcher() {
-	usernames = { "jackyruth", "santa"};
-	passwords = { "northwestpassage", "ono"};
+	usernames = { "santa", "jackyruth", "G", "Samiha","allison"};
+	passwords = { "ono", "northwestpassage", "Sohnvi","Hassan","yao"};
 }
 File_Fetcher::~File_Fetcher() {
 	delete the_interface;

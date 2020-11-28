@@ -8,9 +8,11 @@ class File_Fetcher;
 Interface::Interface() {
 	is_president = false;
 };
+
 Interface::~Interface() {
 	delete the_file_fetcher;
 };
+
 void Interface::accept_username_password() {
 	MOVE_CURSOR(0, 0);
 	cout << "enter username ";
@@ -30,16 +32,18 @@ void Interface::accept_username_password() {
 	display_login_result(true);
 	display_menu_items(is_president);
 }
+
 bool Interface::verify_login(string username, string password) {
 	list<string>::iterator it;
 
 	// search for username
 	it = find(the_file_fetcher->usernames.begin(), the_file_fetcher->usernames.end(), username);
 	if (it != the_file_fetcher->usernames.end()) {
+		person_id = distance(the_file_fetcher->usernames.begin(), it);
 		// search for password
 		it = find(the_file_fetcher->passwords.begin(), the_file_fetcher->passwords.end(), password);
 		if (it != the_file_fetcher->passwords.end()){
-			if (username == "santa") {
+			if (person_id == 0) {
 				is_president = true;
 			}
 			return true;
@@ -48,6 +52,7 @@ bool Interface::verify_login(string username, string password) {
 
 	return false;
 }
+
 void Interface::Add_File_Fetcher(File_Fetcher* pfile_fetcher) {
 	the_file_fetcher = pfile_fetcher;
 	the_file_fetcher->the_interface = this;
@@ -86,16 +91,22 @@ void Interface::display_login_result(bool rslt) {
 void Interface::display_menu_items(bool is_president) {
 	int selection = -1;
 	if (is_president == false) {
-		MOVE_CURSOR(0, 0);
-		printf("                                            ");
-		MOVE_CURSOR(0, 1);
-		printf("                                            ");
+		MOVE_CURSOR(0, 0); 
+		printf("                                               ");
+		MOVE_CURSOR(0, 1); 
+		printf("                                               ");
 		MOVE_CURSOR(0, 2);
-		printf("                                            ");
+		printf("                                               ");
 		MOVE_CURSOR(0, 3);
-		printf("                                            ");
+		printf("                                               ");
 		MOVE_CURSOR(0, 0);
-		printf("Choose 1 to change year 2 program preference");
+		printf("Choose 1 to change year 2 program preference   ");
+		MOVE_CURSOR(0, 1);
+		printf("Choose 2 to register courses (not implemented) ");
+		MOVE_CURSOR(0, 2);
+		printf("Choose 3 to view timetable   (not implemented) ");
+		MOVE_CURSOR(0, 3);
+		printf("Choose 4 to view grades      (not implemented) ");
 		cin >> selection;
 	} 
 	else{

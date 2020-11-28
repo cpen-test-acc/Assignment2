@@ -10,7 +10,7 @@ class Interface{
 	private:
 		list <string> menu_items;
 		string username, password;
-		int student_id;
+		int person_id;
 		bool is_president;
 		bool verify_login(string username, string password);
 	public:
