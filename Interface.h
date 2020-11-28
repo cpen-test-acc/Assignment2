@@ -3,6 +3,7 @@
 #include <list>
 #include <iterator> 
 #include "File_Fetcher.h"
+#include "Year2_Program_Selection.h"
 using namespace std;
 
 class File_Fetcher;
@@ -15,6 +16,7 @@ class Interface{
 		bool verify_login(string username, string password);
 	public:
 		File_Fetcher* the_file_fetcher;
+		Year2_Program_Selection* yr2_pgm_sel;
 		Interface();
 		~Interface();
 		

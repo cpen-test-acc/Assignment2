@@ -27,6 +27,9 @@
     <ClCompile Include="rt.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Year2_Program_Selection.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Interface.h">
@@ -36,6 +39,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="rt.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Year2_Program_Selection.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
